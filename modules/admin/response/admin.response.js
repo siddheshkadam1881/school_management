@@ -60,10 +60,38 @@ let response = {
         message: "Students not found",
         status_code: "CC400"
     },
-    update_student_detail:{
+    update_student_detail: {
         message: "Student details update successfully",
-        status_code: "CC200"  
-    }
+        status_code: "CC200"
+    },
+    year_days_already_added: {
+        message: "Year days already added",
+        status_code: "CC400"
+    },
+    issue_add_days: {
+        message: "issue while adding days",
+        status_code: "CC400"
+    },
+    year_days_added_successfully: {
+        message: "working days of year added successfully",
+        status_code: "CC200"
+    },
+    not_found_year: {
+        message: "not found working days of this year",
+        status_code: "CC400"
+    },
+    fetch_working_days: {
+        message: "working days of year fetch successfully",
+        status_code: "CC200"
+    },
+    year_days_update_successfully: {
+        message: "working days of year update successfully",
+        status_code: "CC200"
+    },
+    year_days_update_issue: {
+        message: "working days of year update fail",
+        status_code: "CC200"
+    },
 }
 module.exports = response;
 module.exports.success = function (key, values) {

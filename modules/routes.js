@@ -9,6 +9,10 @@ router.post('/admin/addStudent', adminController.addStudent)
 router.post('/admin/studentList', adminController.studentList)
 router.post('/admin/getStudentById', adminController.getStudentById)
 router.post('/admin/editStudentDetail', adminController.editStudentDetail)
+router.post('/admin/addWorkingDays', adminController.addWorkingDays)
+router.post('/admin/getWorkingDays', adminController.getWorkingDays)
+router.post('/admin/editWorkingDays', adminController.editWorkingDays)
+// router.post('/admin/addStudent', adminController.editWorkingDays)
 
 
 

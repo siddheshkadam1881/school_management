@@ -34,10 +34,9 @@ module.exports = class adminService {
     }
 
     async addStudent(form_data) {
-
         var students = await adminModel.findStudent(form_data);
         if (students.length > 0) {
-            return responseMessages.success("student_already_added");
+            return responseMessages.failed("student_already_added");
         }
         form_data.birth_date = moment(new Date(form_data.birth_date)).format('L');
         return adminModel.addStudent(form_data)
@@ -101,8 +100,7 @@ module.exports = class adminService {
         return adminModel.findStudent(form_data)
             .then(async (students) => {
                 if (students.length > 0) {
-                    if(form_data.birth_date)
-                    {
+                    if (form_data.birth_date) {
                         form_data.birth_date = moment(new Date(form_data.birth_date)).format('L');
                     }
                     await adminModel.updateStudentDetails(form_data)
@@ -116,6 +114,66 @@ module.exports = class adminService {
                 console.log("err", err)
                 let error = (typeof err.errors != 'undefined') ? err.errors : err.message;
                 return responseMessages.failed("something_went_wrong");
+            })
+    }
+
+    async addWorkingDays(form_data) {
+        var years = await adminModel.checkYearModel(form_data);
+        if (years.length > 0) {
+            return responseMessages.failed("year_days_already_added");
+        }
+        return adminModel.addWorkingDays(form_data)
+            .then(async (id) => {
+                if (id) {
+                    return responseMessages.success("year_days_added_successfully");
+                }
+                else {
+                    return responseMessages.failed("issue_add_days", "", form_data.lang_code);
+                }
+            })
+            .catch((err) => {
+                console.log("err", err)
+                let error = (typeof err.errors != 'undefined') ? err.errors : err.message;
+                return responseMessages.failed("something_went_wrong", "", form_data.lang_code);
+            })
+    }
+
+    async editWorkingDays(form_data) {
+        var years = await adminModel.checkYearModel(form_data);
+        if (years.length > 0) {
+            return adminModel.editWorkingDays(form_data)
+                .then(async (id) => {
+                    if (id) {
+                        return responseMessages.success("year_days_update_successfully");
+                    }
+                    else {
+                        return responseMessages.failed("year_days_update_issue", "", form_data.lang_code);
+                    }
+                })
+                .catch((err) => {
+                    console.log("err", err)
+                    let error = (typeof err.errors != 'undefined') ? err.errors : err.message;
+                    return responseMessages.failed("something_went_wrong", "", form_data.lang_code);
+                })
+        } else {
+            return responseMessages.failed("not_found_year");
+        }
+    }
+
+    async getWorkingDays(form_data) {
+        return adminModel.checkYearModel(form_data)
+            .then(async (yeardays) => {
+                if (yeardays.length > 0) {
+                    return responseMessages.success("fetch_working_days", JSON.parse(yeardays[0].working_days));
+                }
+                else {
+                    return responseMessages.failed("not_found_year", "", form_data.lang_code);
+                }
+            })
+            .catch((err) => {
+                console.log("err", err)
+                let error = (typeof err.errors != 'undefined') ? err.errors : err.message;
+                return responseMessages.failed("something_went_wrong", "", form_data.lang_code);
             })
     }
 }

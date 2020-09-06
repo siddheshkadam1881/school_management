@@ -113,7 +113,7 @@ module.exports = class AdminController {
         return res.json(returnResponse);
     }
 
-    async editStudentDetail(req,res){
+    async editStudentDetail(req, res) {
         let returnResponse = {}
         // Format request data
         let form_data = adminFormatter.editStudentDetail(req);
@@ -135,8 +135,77 @@ module.exports = class AdminController {
         }
         // return response to client request
         return res.json(returnResponse);
-
     }
 
+    async addWorkingDays(req, res) {
+        let returnResponse = {}
+        // Format request data
+        let form_data = adminFormatter.addWorkingDays(req);
+        // Getting voucher Validator
+        let rules = adminValidator.addWorkingDays();
+        // Check and store validation data
+        let validation = new Validator(form_data, rules);
+        // Check validation is passed or failed
+        if (validation.passes() && !validation.fails()) {
+            /**
+             * Validation success
+             */
+            returnResponse = await adminService.addWorkingDays(form_data);
+        } else {
+            // store return code and message in returnResponse variable
+            returnResponse = responseMessages.validation_error;
+            // Getting errors of validation and store in returnResponse variable
+            returnResponse.errors = validation.errors.errors;
+        }
+        // return response to client request
+        return res.json(returnResponse);
+    }
 
+    async getWorkingDays(req, res) {
+        let returnResponse = {}
+        // Format request data
+        let form_data = adminFormatter.getWorkingDays(req);
+        // Getting voucher Validator
+        let rules = adminValidator.getWorkingDays();
+        // Check and store validation data
+        let validation = new Validator(form_data, rules);
+        // Check validation is passed or failed
+        if (validation.passes() && !validation.fails()) {
+            /**
+             * Validation success
+             */
+            returnResponse = await adminService.getWorkingDays(form_data);
+        } else {
+            // store return code and message in returnResponse variable
+            returnResponse = responseMessages.validation_error;
+            // Getting errors of validation and store in returnResponse variable
+            returnResponse.errors = validation.errors.errors;
+        }
+        // return response to client request
+        return res.json(returnResponse);
+    }
+
+    async editWorkingDays(req, res) {
+        let returnResponse = {}
+        // Format request data
+        let form_data = adminFormatter.editWorkingDays(req);
+        // Getting voucher Validator
+        let rules = adminValidator.editWorkingDays();
+        // Check and store validation data
+        let validation = new Validator(form_data, rules);
+        // Check validation is passed or failed
+        if (validation.passes() && !validation.fails()) {
+            /**
+             * Validation success
+             */
+            returnResponse = await adminService.editWorkingDays(form_data);
+        } else {
+            // store return code and message in returnResponse variable
+            returnResponse = responseMessages.validation_error;
+            // Getting errors of validation and store in returnResponse variable
+            returnResponse.errors = validation.errors.errors;
+        }
+        // return response to client request
+        return res.json(returnResponse);
+    }
 }

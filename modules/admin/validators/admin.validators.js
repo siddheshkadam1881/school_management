@@ -27,10 +27,55 @@ module.exports = class adminValidator {
         };
         return returnData;
     }
-   
-    getStudentById(){
+
+    getStudentById() {
         let form_data = {
             register_number: "required",
+        };
+        return form_data;
+    }
+
+    addWorkingDays() {
+        let form_data = {
+            year: "required|numeric",
+            january: "required|numeric",
+            february: "required|numeric",
+            march: "required|numeric",
+            april: "required|numeric",
+            may: "required|numeric",
+            june: "required|numeric",
+            july: "required|numeric",
+            august: "required|numeric",
+            september: "required|numeric",
+            october: "required|numeric",
+            november: "required|numeric",
+            december: "required|numeric"
+        };
+        return form_data;
+    }
+
+    getWorkingDays() {
+        let form_data = {
+            year: "required|numeric"
+        };
+        return form_data;
+    }
+
+    editWorkingDays() {
+        let form_data = {
+            year: "required|numeric",
+            january: "required|numeric",
+            february: "required|numeric",
+            march: "required|numeric",
+            april: "required|numeric",
+            may: "required|numeric",
+            june: "required|numeric",
+            july: "required|numeric",
+            august: "required|numeric",
+            september: "required|numeric",
+            october: "required|numeric",
+            november: "required|numeric",
+            december: "required|numeric"
         };
         return form_data;
     }

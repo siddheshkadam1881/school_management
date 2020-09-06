@@ -49,4 +49,50 @@ module.exports = class offerFormatter {
         };
         return form_data;
     }
+
+    addWorkingDays(req){
+        let form_data = {
+            year: req.body.year,
+            january: req.body.january,
+            february : req.body.february,
+            march: req.body.march,
+            april: req.body.april,
+            may: req.body.may,
+            june: req.body.june,
+            july: req.body.july,
+            august: req.body.august,
+            september: req.body.september,
+            october: req.body.october,
+            november: req.body.november,
+            december: req.body.december
+        };
+        return form_data;
+    }
+
+    getWorkingDays(req){
+        let form_data = {
+            year: req.body.year
+        };
+        return form_data;
+    }
+
+    editWorkingDays(req){
+        let form_data = {
+            year: req.body.year,
+            january: req.body.january,
+            february : req.body.february,
+            march: req.body.march,
+            april: req.body.april,
+            may: req.body.may,
+            june: req.body.june,
+            july: req.body.july,
+            august: req.body.august,
+            september: req.body.september,
+            october: req.body.october,
+            november: req.body.november,
+            december: req.body.december
+        };
+        return form_data;
+    }
+
 }
