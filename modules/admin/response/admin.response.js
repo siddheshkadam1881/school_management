@@ -1,56 +1,68 @@
 let response = {
     validation_error: {
-            status: false,
-            status_code: 'CC422',
-            message: "Incorrect data"
+        status: false,
+        status_code: 'CC422',
+        message: "Incorrect data"
     },
     form_field_required: {
         message: "Form fields required",
         status_code: "CC400",
     },
-    password_not_match:{
+    password_not_match: {
         message: "Sorry,password not match",
         status_code: "CC400"
     },
-    email_not_match:{
+    email_not_match: {
         message: "Sorry,email not match",
         status_code: "CC400"
     },
-    user_login_success:{
+    user_login_success: {
         message: "User login successfully",
         status_code: "CC200"
     },
-    something_went_wrong:{
+    something_went_wrong: {
         message: "Something went wrong",
         status_code: "CC500"
     },
     user_invalid_token: {
-            message: "Invalid user token",
-            status_code: "CC401"
+        message: "Invalid user token",
+        status_code: "CC401"
     },
     token_not_found: {
-            message: "Token not found",
-            status_code: "CC404"
+        message: "Token not found",
+        status_code: "CC404"
     },
     session_timeout: {
-            message: "Session timeout",
-            status_code: "CC404"
+        message: "Session timeout",
+        status_code: "CC404"
     },
     invalid_user: {
-            message: "Invalid user",
-            status_code: "CC404"
+        message: "Invalid user",
+        status_code: "CC404"
     },
-    student_add_successfully:{
+    student_add_successfully: {
         message: "Student add successfully",
         status_code: "CC200"
     },
-    student_not_added:{
+    student_not_added: {
         message: "Student add failed",
         status_code: "CC400"
     },
-    student_already_added:{
+    student_already_added: {
         message: "Student already added",
         status_code: "CC400"
+    },
+    get_student_success: {
+        message: "Student gets successfully",
+        status_code: "CC200"
+    },
+    student_not_found: {
+        message: "Students not found",
+        status_code: "CC400"
+    },
+    update_student_detail:{
+        message: "Student details update successfully",
+        status_code: "CC200"  
     }
 }
 module.exports = response;

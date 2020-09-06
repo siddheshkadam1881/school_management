@@ -6,6 +6,10 @@ let adminController = new AdminController();
 
 router.post('/admin/login', adminController.login)
 router.post('/admin/addStudent', adminController.addStudent)
+router.post('/admin/studentList', adminController.studentList)
+router.post('/admin/getStudentById', adminController.getStudentById)
+router.post('/admin/editStudentDetail', adminController.editStudentDetail)
+
 
 
 module.exports = router;

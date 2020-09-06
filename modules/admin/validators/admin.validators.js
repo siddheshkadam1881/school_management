@@ -19,4 +19,19 @@ module.exports = class adminValidator {
         };
         return returnData;
     }
+
+    studentList() {
+        let returnData = {
+            offset: "required|numeric",
+            limit: "required|numeric|max:99|digits_between:1,2"
+        };
+        return returnData;
+    }
+   
+    getStudentById(){
+        let form_data = {
+            register_number: "required",
+        };
+        return form_data;
+    }
 }
