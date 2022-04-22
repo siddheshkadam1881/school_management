@@ -38,9 +38,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 let indexRouter = require(appRoot + '/modules/routes.js');
 let validator = require(appRoot + '/helper/client_api_validator.js');
-app.use(function(req, res, next) {
-  validator.check_api_validation(req, res, next)
-});
+// app.use(function(req, res, next) {
+//   validator.check_api_validation(req, res, next)
+// });
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
 app.use('/rest', indexRouter);
 
 // catch 404 and forward to error handler

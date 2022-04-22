@@ -79,4 +79,12 @@ module.exports = class adminValidator {
         };
         return form_data;
     }
+
+
+    storeSalesIteam() {
+        let form_data = {
+            itemXmlfile: "required"
+        };
+        return form_data;
+    }
 }

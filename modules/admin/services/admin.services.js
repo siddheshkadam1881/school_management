@@ -4,6 +4,7 @@ const validator = require(path.join(global.appRoot + "/helper/client_api_validat
 let adminModel = new (require("../model/admin.mysql"))();
 var sha1 = require('sha1');
 const moment = require('moment');
+var parser = require('xml2json-light');
 
 module.exports = class adminService {
     async login(form_data) {
@@ -176,4 +177,29 @@ module.exports = class adminService {
                 return responseMessages.failed("something_went_wrong", "", form_data.lang_code);
             })
     }
+
+
+    storeSalesIteam(form_data) {
+        console.log("form_data",form_data.itemXmlfile);
+        var xmljson = parser.xml2json(form_data.itemXmlfile);
+        console.log("to json -> %s", JSON.stringify(xmljson));
+      return;
+
+
+        return adminModel.checkYearModel(form_data)
+            .then(async (yeardays) => {
+                if (yeardays.length > 0) {
+                    return responseMessages.success("fetch_working_days", JSON.parse(yeardays[0].working_days));
+                }
+                else {
+                    return responseMessages.failed("not_found_year", "", form_data.lang_code);
+                }
+            })
+            .catch((err) => {
+                console.log("err", err)
+                let error = (typeof err.errors != 'undefined') ? err.errors : err.message;
+                return responseMessages.failed("something_went_wrong", "", form_data.lang_code);
+            })
+    }
+
 }
