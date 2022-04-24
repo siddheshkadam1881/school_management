@@ -92,7 +92,18 @@ let response = {
         message: "working days of year update fail",
         status_code: "CC200"
     },
+    fetch_sales_items:{
+        message: "fetch sales items successfully",
+        status_code: "CC200"
+    },
+    not_item_found:{
+        message: "no items found",
+        status_code: "CC200"
+    }
+
 }
+
+
 module.exports = response;
 module.exports.success = function (key, values) {
     let returnResponse = response[key] == undefined ? {} : response[key];

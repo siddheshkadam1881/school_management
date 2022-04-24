@@ -14,6 +14,6 @@ router.post('/admin/getWorkingDays', adminController.getWorkingDays)
 router.post('/admin/editWorkingDays', adminController.editWorkingDays)
 // router.post('/admin/addStudent', adminController.editWorkingDays)
 router.post('/admin/storeSalesIteam', adminController.storeSalesIteam)
-
+router.get('/admin/getAllSalesItem', adminController.getAllSalesItem)
 
 module.exports = router;

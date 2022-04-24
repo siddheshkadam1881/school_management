@@ -1,9 +1,9 @@
 let environment = {
     development: {
-        "host": "sql12.freemysqlhosting.net",
-        "user": "sql12363973",
-        "password": "PvK3I7LuEU",
-        "database": "sql12363973",
+        "host": "sql5.freemysqlhosting.net",
+        "user": "sql5487880",
+        "password": "3qBYjsXKNA",
+        "database": "sql5487880",
         "port": 3000,
         "clientExpire": 60 * 60 * 24 * 365
     },

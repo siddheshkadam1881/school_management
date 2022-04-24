@@ -179,20 +179,14 @@ module.exports = class adminService {
     }
 
 
-    storeSalesIteam(form_data) {
-        console.log("form_data",form_data.itemXmlfile);
-        var xmljson = parser.xml2json(form_data.itemXmlfile);
-        console.log("to json -> %s", JSON.stringify(xmljson));
-      return;
-
-
-        return adminModel.checkYearModel(form_data)
-            .then(async (yeardays) => {
-                if (yeardays.length > 0) {
-                    return responseMessages.success("fetch_working_days", JSON.parse(yeardays[0].working_days));
+    getAllSalesItem(form_data) {
+        return adminModel.getAllSalesItem(form_data)
+            .then(async (items) => {
+                if (items.length > 0) {
+                    return responseMessages.success("fetch_sales_items",items,"");
                 }
                 else {
-                    return responseMessages.failed("not_found_year", "", form_data.lang_code);
+                    return responseMessages.failed("not_item_found", "", form_data.lang_code);
                 }
             })
             .catch((err) => {
@@ -202,4 +196,21 @@ module.exports = class adminService {
             })
     }
 
+    storeSalesIteam(form_data) {
+        var xmljson = parser.xml2json(form_data.itemXmlfile);
+        let SaleItems = xmljson.ConfigExport.SaleItems.SaleItem;
+        console.log("SaleItems.length",SaleItems.length)
+        // for (let item of SaleItems) {
+            return adminModel.addSaleItem(SaleItems)
+                .then(async (id) => {
+                })
+                .catch((err) => {
+                    console.log("err", err)
+                    let error = (typeof err.errors != 'undefined') ? err.errors : err.message;
+                    return responseMessages.failed("something_went_wrong", "", form_data.lang_code);
+                })
+        // }
+        // console.log("SaleItems.length",SaleItems.length);
+        // return responseMessages.success("Please wait some time sales will add in some time", "");
+    }
 }

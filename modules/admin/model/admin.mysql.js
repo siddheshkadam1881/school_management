@@ -1,6 +1,21 @@
 const path = require("path");
 const dbconnection = require(path.join(global.appRoot + "/helper/dbconnection"));
 module.exports = class AdminModel {
+    async addSaleItem(SaleItems) {
+        let count = 0;
+        // sale_item_id|alt_item_id|description|division|available|bar_code|plu|function_revenue|
+        for (let item of SaleItems) {
+            var transactionQuery = "INSERT INTO `sales` (`sale_item_id`,`alt_item_id`,`description`,`division`,`available`,`bar_code`,`plu`,`function_revenue`) VALUES (?,?,?,?,?,?,?,?)";
+            await dbconnection.executevaluesquery(transactionQuery, [item.SaleItemId, item.AltItemId, item.Description, item.Division, item.Available, item.BarCode, item.Plu.Id, item['Function']['_@ttribute']]);
+            count++;
+        }
+    }
+
+    async getAllSalesItem() {
+        var query = "SELECT * FROM sales"
+        return await dbconnection.executevaluesquery(query, [])
+    }
+
     async getAdmin() {
         var query = "SELECT * FROM admin_user"
         return await dbconnection.executevaluesquery(query, [])

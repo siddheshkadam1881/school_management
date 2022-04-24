@@ -103,4 +103,10 @@ module.exports = class offerFormatter {
         return form_data;
     }
 
+    getAllSalesItem(req){
+        let form_data = {
+            // itemXmlfile: req.body.itemXmlfile
+        };
+        return form_data;
+    }
 }
